@@ -1,0 +1,14 @@
+{
+  "name": "meteords",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "start": "webpack --watch --mode=development"
+  },
+  "author": "",
+  "license": "ISC"
+}
