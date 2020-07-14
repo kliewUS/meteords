@@ -11,7 +11,9 @@ class Game{
     }
 
     addMeteors(){
-        const meteor = new Meteor(this.canvas, this.ctx, 100, 100, this.dictionary.randomWord())
+        let randX = Math.floor(Math.random() * (this.canvas.width - 200)) + 200;
+
+        let meteor = new Meteor(this.canvas, this.ctx, randX, 0, this.dictionary.randomWord())
         this.meteors.push(meteor);
     }
 
