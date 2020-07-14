@@ -5,7 +5,7 @@ class Meteor {
         this.x = x;
         this.y = y;
         this.dx = 0;
-        this.dy = 0;
+        this.dy = 1;
         this.word = word;
 
         //Variables that I need:
@@ -33,7 +33,7 @@ class Meteor {
         // debugger;
         this.ctx.beginPath();
         this.ctx.fillStyle = '#008000';
-        this.ctx.fillText(this.word, this.x - 20, this.y - 25);
+        this.ctx.fillText(this.word, this.x - 23, this.y - 25);
         this.ctx.fill();
         this.ctx.closePath();
     }

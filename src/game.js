@@ -22,11 +22,25 @@ class Game{
     }
 
     draw(){
-        // debugger;
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         for(let i = 0; i < this.meteors.length; i++){
             this.meteors[i].draw();
             this.meteors[i].drawText();
         }
+    }
+
+    move(){
+        for(let i = 0; i < this.meteors.length; i++){
+            this.meteors[i].move();
+        }
+    }
+
+    start(){
+        const that = this;
+        setInterval(function(){ 
+            that.draw();
+            that.move();
+        }, 1000);
     }
 
 

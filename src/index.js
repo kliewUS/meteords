@@ -7,6 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const game = new Game(canvas,ctx);
 
-    game.draw();
+    game.start();
+
+
+    // game.draw();
 });
   
