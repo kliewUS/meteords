@@ -9,14 +9,13 @@ class Game{
         this.meteors = [];
         
         
-        this.addMeteors = this.addMeteors.bind(this);
-        this.draw = this.draw.bind(this);
+        // this.addMeteors = this.addMeteors.bind(this);
+        // this.draw = this.draw.bind(this);
 
         this.addMeteors();
     }
 
     addMeteors(){
-        // debugger;
         const meteor = new Meteor(this.canvas, this.ctx, 100, 100, this.dictionary.randomWord())
         this.meteors.push(meteor);
     }
@@ -40,8 +39,15 @@ class Game{
         setInterval(function(){ 
             that.draw();
             that.move();
-        }, 1000);
+        }, 500);
+
+        setInterval(function(){
+            that.addMeteors();
+        }, 10000);
+
     }
+    //How to handle spawning meteors? Maybe every 10 seconds, spawn a new meteor.
+    //As more meteors get destroyed, spawn faster.
 
 
     //WPM: (# of words typed / Time taken (input timer)) * 60 = WPM
