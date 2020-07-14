@@ -7,11 +7,6 @@ class Game{
         this.ctx = ctx;
         this.dictionary = new Dictionary();
         this.meteors = [];
-        
-        
-        // this.addMeteors = this.addMeteors.bind(this);
-        // this.draw = this.draw.bind(this);
-
         this.addMeteors();
     }
 
@@ -34,12 +29,32 @@ class Game{
         }
     }
 
+    renderGround(){
+        this.ctx.beginPath();
+        this.ctx.rect(0, 700, this.canvas.width, 100);
+        this.ctx.fillStyle = '#808080';
+        this.ctx.fill();        
+        this.ctx.stroke();
+    }
+
+    positionCheck(){
+
+        for(let i = 0; i < this.meteors.length; i++){
+            if(this.meteors[i].y >= 700){
+                this.meteors.splice(i, 1);
+            }
+        }
+    }
+
     start(){
         const that = this;
+
         setInterval(function(){ 
             that.draw();
             that.move();
-        }, 500);
+            that.renderGround();
+            that.positionCheck();
+        }, 50);
 
         setInterval(function(){
             that.addMeteors();

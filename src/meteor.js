@@ -13,14 +13,9 @@ class Meteor {
         //X and Y positions
         //X and Y velocities (Only moves in the Y direction)
         //Word attached
-
-        // this.meteorImg = new Image();
-        // this.meteorImg.src = __dirname + "./meteor.png";
     }
 
     draw(){
-        // debugger;
-        // this.ctx.drawImage(this.meteorImg, this.x, this.y);
 
         this.ctx.beginPath();
         this.ctx.arc(this.x, this.y, 20, 0, 2*Math.PI);
