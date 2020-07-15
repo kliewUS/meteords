@@ -37,10 +37,21 @@ class Game{
         this.ctx.fillStyle = '#808080';
         this.ctx.fill();        
         this.ctx.stroke();
+        this.ctx.closePath();
+
+        //Probably should move this to player logic later.
+        this.ctx.beginPath();
+        this.ctx.fillStyle = '#000000';
+        this.ctx.fillText('WPM', 50, 750);
+        this.ctx.fill();
+        this.ctx.fillText('Score', 250, 750);
+        this.ctx.fill();
+        this.ctx.fillText('Lives', 450, 750);
+        this.ctx.fill();                
+        this.ctx.closePath();          
     }
 
     positionCheck(){
-
         for(let i = 0; i < this.meteors.length; i++){
             if(this.meteors[i].y >= 700){
                 this.meteors.splice(i, 1);
@@ -68,6 +79,12 @@ class Game{
 
 
     //WPM: (# of words typed / Time taken (input timer)) * 60 = WPM
+
+    //If spacebar (event code: 32) or enter (event code: 13) and input matches with
+    //word, delete the meteor.
+    //Iterate through the meteors to do this.
+    //Get the input from index.js
+
 
 }
 
