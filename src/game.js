@@ -1,13 +1,19 @@
 const Meteor = require("./meteor");
 const Dictionary = require("./dictionary");
+const Player = require("./player");
 
 class Game{
-    constructor(canvas, ctx){
+    constructor(canvas, ctx, input){
         this.canvas = canvas;
         this.ctx = ctx;
+        this.input = input;
         this.dictionary = new Dictionary();
+        this.player = new Player();
         this.meteors = [];
         this.addMeteors();
+
+
+        this.handleMeteor = this.handleMeteor.bind(this);
     }
 
     addMeteors(){
@@ -55,24 +61,51 @@ class Game{
         for(let i = 0; i < this.meteors.length; i++){
             if(this.meteors[i].y >= 700){
                 this.meteors.splice(i, 1);
+                this.player.lives -= 1;
             }
+        }
+    }
+
+    handleMeteor(e){
+        let value = this.input.value.trim();
+
+        if(e.keyCode === 32 || e.keyCode === 13){
+            for(let i = 0; i < this.meteors.length; i++){
+                if(value === this.meteors[i].word){
+                    this.meteors.splice(i, 1);
+                    this.player.destroyCount += 1;
+                    this.input.value = "";
+                    break;
+                }
+            }
+        }
+
+    }
+
+    gameOver(){
+        if(this.player.lives <= 0){
+            alert('Game Over!');
         }
     }
 
     start(){
         const that = this;
 
+        //Put event listener on input
+        this.input.addEventListener('keydown', this.handleMeteor);
+
         setInterval(function(){ 
             that.draw();
             that.move();
             that.renderGround();
             that.positionCheck();
+            that.gameOver();
         }, 50);
-
+        
         setInterval(function(){
             that.addMeteors();
         }, 10000);
-
+        
     }
     //How to handle spawning meteors? Maybe every 10 seconds, spawn a new meteor.
     //As more meteors get destroyed, spawn faster.
