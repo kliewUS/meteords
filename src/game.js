@@ -94,16 +94,26 @@ class Game{
         //Put event listener on input
         this.input.addEventListener('keydown', this.handleMeteor);
 
-        setInterval(function(){ 
+        const game = setInterval(function(){ 
             that.draw();
             that.move();
             that.renderGround();
             that.positionCheck();
-            that.gameOver();
+
+            if(that.player.lives <= 0){
+                alert('Game Over!');
+                clearInterval(game);
+            }
+
         }, 50);
         
-        setInterval(function(){
+        const meteors = setInterval(function(){
             that.addMeteors();
+
+            if(that.player.lives <= 0){
+                clearInterval(meteors);
+            }
+
         }, 10000);
         
     }
