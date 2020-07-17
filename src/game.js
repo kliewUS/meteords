@@ -146,7 +146,7 @@ class Game{
                 clearInterval(meteors);
             }
 
-        }, 10000);
+        }, 8000);
         
     }
     //How to handle spawning meteors? Maybe every 10 seconds, spawn a new meteor.

@@ -5,7 +5,7 @@ class Meteor {
         this.x = x;
         this.y = y;
         this.dx = 0;
-        this.dy = 1;
+        this.dy = 1.5;
         this.word = word;
 
         //Variables that I need:
