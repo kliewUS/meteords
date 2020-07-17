@@ -7,6 +7,12 @@ class Game{
         this.canvas = canvas;
         this.ctx = ctx;
         this.input = input;
+
+        this.inputTimer = 0;
+        this.startType = 0;
+        this.endType = 0;
+
+
         this.dictionary = new Dictionary();
         this.player = new Player();
         this.meteors = [];
@@ -14,6 +20,7 @@ class Game{
 
 
         this.handleMeteor = this.handleMeteor.bind(this);
+        this.startTimer = this.startTimer.bind(this);
     }
 
     addMeteors(){
@@ -45,16 +52,25 @@ class Game{
         this.ctx.stroke();
         this.ctx.closePath();
 
-        //Probably should move this to player logic later.
         this.ctx.beginPath();
         this.ctx.fillStyle = '#000000';
-        this.ctx.fillText('WPM', 50, 750);
+        this.ctx.fillText(`WPM: ${this.calculateWPM()}`, 50, 750);
         this.ctx.fill();
-        this.ctx.fillText('Score', 250, 750);
+        this.ctx.fillText(`Score: ${this.player.score}`, 250, 750);
         this.ctx.fill();
-        this.ctx.fillText('Lives', 450, 750);
+        this.ctx.fillText(`Lives: ${this.player.lives}`, 450, 750);
         this.ctx.fill();                
         this.ctx.closePath();          
+    }
+
+    calculateWPM(){
+        if(this.player.destroyCount / (this.inputTimer / 60)){
+            this.player.wpm = (this.player.destroyCount / (this.inputTimer / 60)).toFixed(2);
+        }else{
+            this.player.wpm = 0;
+        }
+
+        return this.player.wpm;
     }
 
     positionCheck(){
@@ -66,6 +82,12 @@ class Game{
         }
     }
 
+    startTimer(e){
+        if(this.startType === 0 || e.target.value !== ' '){
+            this.startType = Date.now();
+        }
+    }
+
     handleMeteor(e){
         let value = this.input.value.trim();
 
@@ -74,18 +96,21 @@ class Game{
                 if(value === this.meteors[i].word){
                     this.meteors.splice(i, 1);
                     this.player.destroyCount += 1;
+                    this.player.score += 1000;
                     this.input.value = "";
                     break;
                 }
             }
+
+            if(this.startType > 0){
+                this.endType = Date.now();
+                this.inputTimer += ((this.endType - this.startType) / 1000)
+            }
+
+            this.startType = 0;
+
         }
 
-    }
-
-    gameOver(){
-        if(this.player.lives <= 0){
-            alert('Game Over!');
-        }
     }
 
     start(){
@@ -93,6 +118,7 @@ class Game{
 
         //Put event listener on input
         this.input.addEventListener('keydown', this.handleMeteor);
+        this.input.addEventListener('input', this.startTimer);
 
         const game = setInterval(function(){ 
             that.draw();
@@ -102,6 +128,7 @@ class Game{
 
             if(that.player.lives <= 0){
                 alert('Game Over!');
+                that.renderGround();
                 clearInterval(game);
             }
 
