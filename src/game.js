@@ -48,12 +48,14 @@ class Game{
         this.ctx.beginPath();
         this.ctx.rect(0, 700, this.canvas.width, 100);
         this.ctx.fillStyle = '#808080';
-        this.ctx.fill();        
+        this.ctx.fill();  
+        this.ctx.strokeStyle = "#f5f5f5";      
         this.ctx.stroke();
         this.ctx.closePath();
 
         this.ctx.beginPath();
         this.ctx.fillStyle = '#000000';
+        this.ctx.font = "24px Space Mono";
         this.ctx.fillText(`WPM: ${this.calculateWPM()}`, 50, 750);
         this.ctx.fill();
         this.ctx.fillText(`Score: ${this.player.score}`, 250, 750);

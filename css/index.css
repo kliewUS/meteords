@@ -1,0 +1,44 @@
+body {
+    font-family: 'Space Mono', monospace;
+    background-image: url('../images/background.jpg');    
+}
+
+.main-game{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#type-form{
+    border: 1px solid;
+    position: absolute;
+    bottom: 137.5px;
+    background-color: whitesmoke;
+    padding: 2.5px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+#canvas{
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+}
+
+.header{
+    font-size: 24px;
+    font-weight: bold;
+    color: whitesmoke;
+}
+
+.link-list{
+    display: flex;
+    margin-top: 40px;
+}
+
+.link-list li{
+    padding: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: whitesmoke;
+}

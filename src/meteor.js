@@ -28,6 +28,7 @@ class Meteor {
         // debugger;
         this.ctx.beginPath();
         this.ctx.fillStyle = '#008000';
+        this.ctx.font = "16px Space Mono";        
         this.ctx.fillText(this.word, this.x - 23, this.y - 25);
         this.ctx.fill();
         this.ctx.closePath();
