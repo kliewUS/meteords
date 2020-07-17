@@ -128,7 +128,10 @@ class Game{
 
             if(that.player.lives <= 0){
                 alert('Game Over!');
+                that.draw();
+                that.move();
                 that.renderGround();
+                that.positionCheck();
                 clearInterval(game);
             }
 
