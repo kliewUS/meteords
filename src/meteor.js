@@ -19,7 +19,7 @@ class Meteor {
 
         this.ctx.beginPath();
         this.ctx.arc(this.x, this.y, 20, 0, 2*Math.PI);
-        this.ctx.fillStyle = '#A52A2A';
+        this.ctx.fillStyle = '#654321';
         this.ctx.fill();
         this.ctx.closePath();        
     }
@@ -27,8 +27,8 @@ class Meteor {
     drawText(){
         // debugger;
         this.ctx.beginPath();
-        this.ctx.fillStyle = '#008000';
-        this.ctx.font = "16px Space Mono";        
+        this.ctx.fillStyle = '#CA0B00';
+        this.ctx.font = "bold 16px Space Mono";        
         this.ctx.fillText(this.word, this.x - 23, this.y - 25);
         this.ctx.fill();
         this.ctx.closePath();

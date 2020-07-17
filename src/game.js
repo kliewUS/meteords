@@ -24,7 +24,7 @@ class Game{
     }
 
     addMeteors(){
-        let randX = Math.floor(Math.random() * (this.canvas.width - 200)) + 200;
+        let randX = Math.floor(Math.random() * ((this.canvas.width - 100) - 100)) + 100;
 
         let meteor = new Meteor(this.canvas, this.ctx, randX, 0, this.dictionary.randomWord())
         this.meteors.push(meteor);
@@ -56,11 +56,11 @@ class Game{
         this.ctx.beginPath();
         this.ctx.fillStyle = '#000000';
         this.ctx.font = "24px Space Mono";
-        this.ctx.fillText(`WPM: ${this.calculateWPM()}`, 50, 750);
+        this.ctx.fillText(`WPM: ${this.calculateWPM()}`, 45, 745);
         this.ctx.fill();
-        this.ctx.fillText(`Score: ${this.player.score}`, 250, 750);
+        this.ctx.fillText(`Score: ${this.player.score}`, 235, 745);
         this.ctx.fill();
-        this.ctx.fillText(`Lives: ${this.player.lives}`, 450, 750);
+        this.ctx.fillText(`Lives: ${this.player.lives}`, 445, 745);
         this.ctx.fill();                
         this.ctx.closePath();          
     }
