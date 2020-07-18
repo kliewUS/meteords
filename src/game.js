@@ -11,16 +11,17 @@ class Game{
         this.inputTimer = 0;
         this.startType = 0;
         this.endType = 0;
+        this.spawnTimer = 8000;
 
 
         this.dictionary = new Dictionary();
         this.player = new Player();
         this.meteors = [];
-        this.addMeteors();
 
 
         this.handleMeteor = this.handleMeteor.bind(this);
         this.startTimer = this.startTimer.bind(this);
+        this.meteorSpawn = this.meteorSpawn.bind(this);
     }
 
     addMeteors(){
@@ -115,10 +116,27 @@ class Game{
 
     }
 
+    timerChange(){
+        if(this.spawnTimer <= 3000){
+            this.spawnTimer = 3000;
+        }else if(this.player.destroyCount % 5 === 0){
+            this.spawnTimer -= 1000;           
+        }
+    }
+
+    meteorSpawn(){
+        this.addMeteors();
+        this.timerChange();
+        let meteors = setTimeout(this.meteorSpawn, this.spawnTimer);
+
+        if(this.player.lives <= 0){
+            clearTimeout(meteors);
+        }
+    }
+
     start(){
         const that = this;
 
-        //Put event listener on input
         this.input.addEventListener('keydown', this.handleMeteor);
         this.input.addEventListener('input', this.startTimer);
 
@@ -138,28 +156,10 @@ class Game{
             }
 
         }, 50);
-        
-        const meteors = setInterval(function(){
-            that.addMeteors();
 
-            if(that.player.lives <= 0){
-                clearInterval(meteors);
-            }
-
-        }, 8000);
-        
+        this.meteorSpawn();
+           
     }
-    //How to handle spawning meteors? Maybe every 10 seconds, spawn a new meteor.
-    //As more meteors get destroyed, spawn faster.
-
-
-    //WPM: (# of words typed / Time taken (input timer)) * 60 = WPM
-
-    //If spacebar (event code: 32) or enter (event code: 13) and input matches with
-    //word, delete the meteor.
-    //Iterate through the meteors to do this.
-    //Get the input from index.js
-
 
 }
 
