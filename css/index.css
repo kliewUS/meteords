@@ -3,11 +3,19 @@ body {
     background-image: url('../images/background.jpg');    
 }
 
+.main{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;    
+}
+
 .main-game{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 #type-form{
@@ -38,6 +46,49 @@ body {
 }
 
 .link-list li{
+    padding: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: whitesmoke;
+}
+
+.instructions-panel{
+    background-color: gray;
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+    text-align: center;
+    padding: 5px;
+}
+
+.instructions{
+    white-space: pre-line;
+    text-align: left;
+}
+
+.hiscores-panel{
+    background-color: gray;
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+    text-align: center;
+    padding: 5px;
+}
+
+.hiscores{
+    white-space: pre-line;
+    text-align: left;
+}
+
+.instructions-header{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.hiscores-header{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.footer{
     padding: 5px;
     font-size: 16px;
     font-weight: bold;

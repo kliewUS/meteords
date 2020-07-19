@@ -119,7 +119,7 @@ class Game{
     timerChange(){
         if(this.spawnTimer <= 3000){
             this.spawnTimer = 3000;
-        }else if(this.player.destroyCount % 5 === 0){
+        }else if(this.player.destroyCount % 5 === 0 && this.player.destroyCount !== 0){
             this.spawnTimer -= 1000;           
         }
     }
