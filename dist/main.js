@@ -159,7 +159,7 @@ eval("class Player{\n    constructor(){\n        this.wpm = 0;\n        this.sco
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("class StartScreen {\n    constructor(ctx, canvas){\n        this.ctx = ctx;\n        this.canvas = canvas;\n    }    \n\n    drawStartingClick(){\n        console.log(this.ctx);\n        this.ctx.beginPath();\n        this.ctx.fillStyle = \"green\"\n        this.ctx.font = 'bold 24px Space Mono';\n        this.ctx.textAlign = \"center\";\n        this.ctx.fillText(\"Click on the Screen to Start Game\", (canvas.width / 2), (canvas.height / 2));\n        this.ctx.fill();\n        this.ctx.closePath();\n    }    \n}\n\nmodule.exports = StartScreen;\n\n//# sourceURL=webpack:///./src/start_screen.js?");
+eval("class StartScreen {\n    constructor(ctx, canvas){\n        this.ctx = ctx;\n        this.canvas = canvas;\n    }    \n\n    drawStartingClick(){\n        this.ctx.beginPath();\n        this.ctx.fillStyle = \"green\"\n        this.ctx.font = 'bold 24px Space Mono';\n        this.ctx.textAlign = \"center\";\n        this.ctx.fillText(\"Click on the Screen to Start Game\", (canvas.width / 2), (canvas.height / 2));\n        this.ctx.fill();\n        this.ctx.closePath();\n    }    \n}\n\nmodule.exports = StartScreen;\n\n//# sourceURL=webpack:///./src/start_screen.js?");
 
 /***/ })
 
