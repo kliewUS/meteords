@@ -1,6 +1,7 @@
 const Meteor = require("./meteor");
 const Dictionary = require("./dictionary");
 const Player = require("./player");
+const GameOverScreen = require("./game_over_screen");
 
 class Game{
     constructor(canvas, ctx, input){
@@ -12,17 +13,52 @@ class Game{
         this.startType = 0;
         this.endType = 0;
         this.spawnTimer = 8000;
-
+        this.hiScore = 0;
+        this.hiWPM = 0;
 
         this.dictionary = new Dictionary();
         this.player = new Player();
+        this.gameOverScreen = new GameOverScreen(ctx, canvas)
         this.meteors = [];
 
 
         this.handleMeteor = this.handleMeteor.bind(this);
+        this.drawBackground = this.drawBackground.bind(this);
         this.startTimer = this.startTimer.bind(this);
         this.meteorSpawn = this.meteorSpawn.bind(this);
+        this.beginGame = this.beginGame.bind(this);
+        this.restartGame = this.restartGame.bind(this);
+        this.gameOver = this.gameOver.bind(this);
     }
+
+    beginGame(e) {
+        if (e.button === 0) {
+          this.canvas.removeEventListener('click', this.beginGame);
+          this.restartGame();
+          this.input.style.display = "block";
+          this.start();
+        }
+    }    
+
+    restartGame() {
+        this.inputTimer = 0;
+        this.startType = 0;
+        this.endType = 0;
+        this.spawnTimer = 8000;
+        this.player.lives = 3;
+        this.player.wpm = 0;
+        this.player.score = 0;
+        this.player.destroyCount = 0;
+        this.meteors = [];        
+    }
+
+    drawBackground() {
+        this.ctx.beginPath();
+          this.ctx.rect(0, 0, canvas.width, canvas.height);
+          this.ctx.fillStyle = "rgba(0, 0, 0, 0.8)";
+          this.ctx.fill();
+        this.ctx.closePath();
+    }    
 
     addMeteors(){
         let randX = Math.floor(Math.random() * ((this.canvas.width - 100) - 100)) + 100;
@@ -45,6 +81,15 @@ class Game{
         }
     }
 
+    renderHiScoreWPM(){
+        this.ctx.beginPath();
+        this.ctx.fillStyle = '#ffffff';
+        this.ctx.font = "16px Space Mono";        
+        this.ctx.fillText(`Best Score: ${this.hiScore}`, 85, 25);
+        this.ctx.fillText(`Best WPM: ${this.hiWPM}`, 525, 25);        
+        this.ctx.closePath();
+    }
+
     renderGround(){
         this.ctx.beginPath();
         this.ctx.rect(0, 700, this.canvas.width, 100);
@@ -56,19 +101,19 @@ class Game{
 
         this.ctx.beginPath();
         this.ctx.fillStyle = '#000000';
-        this.ctx.font = "24px Space Mono";
-        this.ctx.fillText(`WPM: ${this.calculateWPM()}`, 45, 745);
+        this.ctx.font = "20px Space Mono";
+        this.ctx.fillText(`WPM: ${this.calculateWPM()}`, (this.canvas.width / 8), 775);
         this.ctx.fill();
-        this.ctx.fillText(`Score: ${this.player.score}`, 235, 745);
+        this.ctx.fillText(`Score: ${this.player.score}`, (this.canvas.width / 2) , 735);
         this.ctx.fill();
-        this.ctx.fillText(`Lives: ${this.player.lives}`, 445, 745);
+        this.ctx.fillText(`Lives: ${this.player.lives}`, ((this.canvas.width) * (7/8)), 775);
         this.ctx.fill();                
         this.ctx.closePath();          
     }
 
     calculateWPM(){
         if(this.player.destroyCount / (this.inputTimer / 60)){
-            this.player.wpm = (this.player.destroyCount / (this.inputTimer / 60)).toFixed(2);
+            this.player.wpm = (this.player.destroyCount / (this.inputTimer / 60)).toFixed(0);
         }else{
             this.player.wpm = 0;
         }
@@ -143,22 +188,49 @@ class Game{
         const game = setInterval(function(){ 
             that.draw();
             that.move();
+            that.renderHiScoreWPM();
             that.renderGround();
             that.positionCheck();
 
             if(that.player.lives <= 0){
-                alert('Game Over!');
                 that.draw();
                 that.move();
+                that.renderHiScoreWPM();
                 that.renderGround();
                 that.positionCheck();
                 clearInterval(game);
+                that.gameOver();
             }
 
         }, 50);
 
         this.meteorSpawn();
            
+    }
+
+    gameOver(){
+        this.input.removeEventListener('keydown', this.handleMeteor);
+        this.input.removeEventListener('input', this.startTimer);
+        this.input.value = "";
+        this.input.style.display = 'none';
+
+        this.drawBackground();
+
+        this.gameOverScreen.drawGameOver();
+
+        this.gameOverScreen.drawFinalScoreWPM(this.player.score, this.player.wpm, this.hiScore, this.hiWPM);
+
+        if(this.player.wpm > this.hiWPM){
+            this.hiWPM = this.player.wpm;
+        }
+
+        if(this.player.score > this.hiScore){
+            this.hiScore = this.player.score;
+        }        
+
+        this.canvas.addEventListener('click', this.beginGame);
+
+        this.gameOverScreen.drawRestartClick();
     }
 
 }

@@ -4,24 +4,26 @@
   <script type="text/javascript" src="./dist/main.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">  
   <link rel="stylesheet" href="css/reset.css" type="text/css">
-  <link rel="stylesheet" href="css/index.css" type="text/css">    
+  <link rel="stylesheet" href="css/index.css" type="text/css">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon/favicon-32x32.png">
+      
 </head>
-<body>
+<body id="game-page">
   <div class="main">
-    <div class="hiscores-panel">
-      <h1 class="hiscores-header">Hi-Scores (Coming Soon)</h1>
-      <p class="hiscores">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-        Etiam laoreet velit enim, non convallis ante porta ac. 
-        Phasellus cursus lacus ac quam condimentum consectetur. 
-      </p>
+    <div class="mission-panel">
+      <h1 class="mission-header">Your Mission</h1>
+      <p class="mission-text">
+        Giant meteors from space are falling into our atmosphere! 
+        The government has put you in charge to shoot down these meteors!
+        Click on the game screen to start the game!
+      </p>      
     </div>
     <div class="main-game">
       <h1 class="header">Meteords</h1>
       <canvas id="canvas" height="800" width="600"></canvas> 
       <input id="type-form" />
       <ul class="link-list">
-        <li><a href="https://github.com/kliewUS">Github</a></li>
+        <li><a href="https://github.com/kliewUS/meteords">Github</a></li>
         <li><a href=#>Linkedin</a></li>
         <li><a href=#>Portfolio</a></li>
       </ul>
@@ -29,11 +31,11 @@
     </div>
     <div class="instructions-panel">
       <h1 class="instructions-header">Instructions</h1>
-      <p class="instructions">
-        Don't let the meteors hit the ground three times or it's game over!
-        Type in the words that show up on the meteors to destroy them! 
-        The meteors will spawn much quicker as you destroy more meteors.
-      </p>
+      <ul class="instructions">
+        <li>Don't let the meteors hit the ground three times or it's over!</li>
+        <li>Type in the words that show up on the meteors to destroy them! </li>
+        <li>The meteors will come quicker as you destroy more meteors.</li>
+      </ul>
     </div>
   </div>
 </body>

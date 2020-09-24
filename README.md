@@ -7,13 +7,6 @@
 * Implement enemies (meteors).
 * Keep track of typing speed (WPM), scoring, and lives system.
 
-## To be implemented
-
-* Hi-scores
-* Music
-* Diffculties
-* Different Types of Enemies
-
 # Techologies
 Vanilla Javascript for Game Logic, Webpack for bundling the JS files, and HTML Canvas to render the game.
 
