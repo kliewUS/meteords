@@ -126,7 +126,7 @@ eval("class GameOverScreen {\n    constructor(ctx, canvas){\n        this.ctx = 
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const Game = __webpack_require__(/*! ./game */ \"./src/game.js\");\nconst StartScreen = __webpack_require__(/*! ./start_screen */ \"./src/start_screen.js\");\n\ndocument.addEventListener(\"DOMContentLoaded\", function () {\n    const canvas = document.getElementById(\"canvas\");\n    const input = document.getElementById('type-form');\n    const ctx = canvas.getContext('2d');\n\n    const menuScreen = new StartScreen(ctx, canvas)\n    const game = new Game(canvas, ctx, input);\n\n    game.drawBackground();\n    menuScreen.drawStartingClick();\n    input.style.display = 'none';\n\n    canvas.addEventListener('click', game.beginGame);\n\n    // game.start();\n});\n  \n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const Game = __webpack_require__(/*! ./game */ \"./src/game.js\");\nconst StartScreen = __webpack_require__(/*! ./start_screen */ \"./src/start_screen.js\");\n\ndocument.addEventListener(\"DOMContentLoaded\", function () {\n    const canvas = document.getElementById(\"canvas\");\n    const input = document.getElementById('type-form');\n    const ctx = canvas.getContext('2d');\n\n    const menuScreen = new StartScreen(ctx, canvas)\n    const game = new Game(canvas, ctx, input);\n\n    game.drawBackground();\n    menuScreen.drawStartingClick();\n    input.style.display = 'none';\n\n    canvas.addEventListener('click', game.beginGame);\n});\n  \n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -159,7 +159,7 @@ eval("class Player{\n    constructor(){\n        this.wpm = 0;\n        this.sco
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("class StartScreen {\n    constructor(ctx, canvas){\n        this.ctx = ctx;\n        this.canvas = canvas;\n    }    \n\n    drawStartingClick(){\n        this.ctx.beginPath();\n        this.ctx.fillStyle = \"green\"\n        this.ctx.font = 'bold 24px Space Mono';\n        this.ctx.textAlign = \"center\";\n        this.ctx.fillText(\"Click on the Screen to Start Game\", (canvas.width / 2), (canvas.height / 2));\n        this.ctx.fill();\n        this.ctx.closePath();\n    }    \n}\n\nmodule.exports = StartScreen;\n\n//# sourceURL=webpack:///./src/start_screen.js?");
+eval("class StartScreen {\n    constructor(ctx, canvas){\n        this.ctx = ctx;\n        this.canvas = canvas;\n    }    \n\n    drawStartingClick(){\n        console.log(this.ctx);\n        this.ctx.beginPath();\n        this.ctx.fillStyle = \"green\"\n        this.ctx.font = 'bold 24px Space Mono';\n        this.ctx.textAlign = \"center\";\n        this.ctx.fillText(\"Click on the Screen to Start Game\", (canvas.width / 2), (canvas.height / 2));\n        this.ctx.fill();\n        this.ctx.closePath();\n    }    \n}\n\nmodule.exports = StartScreen;\n\n//# sourceURL=webpack:///./src/start_screen.js?");
 
 /***/ })
 

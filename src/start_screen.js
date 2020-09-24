@@ -5,6 +5,7 @@ class StartScreen {
     }    
 
     drawStartingClick(){
+        console.log(this.ctx);
         this.ctx.beginPath();
         this.ctx.fillStyle = "green"
         this.ctx.font = 'bold 24px Space Mono';

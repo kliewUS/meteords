@@ -14,7 +14,5 @@ document.addEventListener("DOMContentLoaded", function () {
     input.style.display = 'none';
 
     canvas.addEventListener('click', game.beginGame);
-
-    // game.start();
 });
   
