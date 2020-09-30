@@ -55,6 +55,10 @@ body {
     color: whitesmoke;
 }
 
+.link-list li:hover{
+    text-decoration: underline;
+}
+
 .instructions-panel{
     background-color: gray;
     border: 1px solid whitesmoke;
