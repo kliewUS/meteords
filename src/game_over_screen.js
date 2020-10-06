@@ -30,9 +30,9 @@ class GameOverScreen {
         this.ctx.fillStyle = "white"
         this.ctx.font = "bold 24px Space Mono";
         this.ctx.textAlign = "center";
-        this.ctx.fillText(`Score: ${score} WPM: ${wpm}`, (canvas.width / 2), (canvas.height / 3));
-        this.ctx.fillText(`${newRecordTextScore}`, (canvas.width / 2), (canvas.height / 3) + 50);
-        this.ctx.fillText(`${newRecordTextWPM}`, (canvas.width / 2), (canvas.height / 3) + 100);
+        this.ctx.fillText(`Score: ${score} WPM: ${wpm}`, (canvas.width / 2), (canvas.height / 3) + 25);
+        this.ctx.fillText(`${newRecordTextScore}`, (canvas.width / 2), (canvas.height / 3) + 75);
+        this.ctx.fillText(`${newRecordTextWPM}`, (canvas.width / 2), (canvas.height / 3) + 125);
         this.ctx.closePath(); 
     }
     
@@ -41,7 +41,7 @@ class GameOverScreen {
         this.ctx.fillStyle = "green"
         this.ctx.font = "bold 24px Space Mono";
         this.ctx.textAlign = "center";
-        this.ctx.fillText("Click on the Screen to Start New Game", (canvas.width / 2), (canvas.height / 2) + 50);
+        this.ctx.fillText("Click on the Screen to Start New Game", (canvas.width / 2), (canvas.height / 2) + 75);
         this.ctx.fill();
         this.ctx.closePath();        
     }

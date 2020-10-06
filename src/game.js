@@ -92,7 +92,7 @@ class Game{
 
     renderGround(){
         this.ctx.beginPath();
-        this.ctx.rect(0, 700, this.canvas.width, 100);
+        this.ctx.rect(0, 600, this.canvas.width, 100);
         this.ctx.fillStyle = '#808080';
         this.ctx.fill();  
         this.ctx.strokeStyle = "#f5f5f5";      
@@ -102,11 +102,11 @@ class Game{
         this.ctx.beginPath();
         this.ctx.fillStyle = '#000000';
         this.ctx.font = "20px Space Mono";
-        this.ctx.fillText(`WPM: ${this.calculateWPM()}`, (this.canvas.width / 8), 775);
+        this.ctx.fillText(`WPM: ${this.calculateWPM()}`, (this.canvas.width / 8), 675);
         this.ctx.fill();
-        this.ctx.fillText(`Score: ${this.player.score}`, (this.canvas.width / 2) , 735);
+        this.ctx.fillText(`Score: ${this.player.score}`, (this.canvas.width / 2) , 635);
         this.ctx.fill();
-        this.ctx.fillText(`Lives: ${this.player.lives}`, ((this.canvas.width) * (7/8)), 775);
+        this.ctx.fillText(`Lives: ${this.player.lives}`, ((this.canvas.width) * (7/8)), 675);
         this.ctx.fill();                
         this.ctx.closePath();          
     }
@@ -123,7 +123,7 @@ class Game{
 
     positionCheck(){
         for(let i = 0; i < this.meteors.length; i++){
-            if(this.meteors[i].y >= 700){
+            if(this.meteors[i].y >= 600){
                 this.meteors.splice(i, 1);
                 this.player.lives -= 1;
             }
