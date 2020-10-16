@@ -1,18 +1,12 @@
 class Meteor {
-    constructor(canvas, ctx, x, y, word){
+    constructor(canvas, ctx, x, y, dy, word){
         this.canvas = canvas;
         this.ctx = ctx;
         this.x = x;
         this.y = y;
         this.dx = 0;
-        this.dy = 1.5;
+        this.dy = dy;
         this.word = word;
-
-        //Variables that I need:
-        //Canvas, so that it can be drawn in.
-        //X and Y positions
-        //X and Y velocities (Only moves in the Y direction)
-        //Word attached
     }
 
     draw(){

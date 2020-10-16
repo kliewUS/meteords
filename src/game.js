@@ -13,8 +13,9 @@ class Game{
         this.startType = 0;
         this.endType = 0;
         this.spawnTimer = 8000;
-        this.hiScore = 0;
-        this.hiWPM = 0;
+        this.hiScore = 10000;
+        this.hiWPM = 100;
+        this.speed = 1.5;
 
         this.dictionary = new Dictionary();
         this.player = new Player();
@@ -63,7 +64,7 @@ class Game{
     addMeteors(){
         let randX = Math.floor(Math.random() * ((this.canvas.width - 100) - 100)) + 100;
 
-        let meteor = new Meteor(this.canvas, this.ctx, randX, 0, this.dictionary.randomWord())
+        let meteor = new Meteor(this.canvas, this.ctx, randX, 0, this.speed, this.dictionary.randomWord())
         this.meteors.push(meteor);
     }
 
@@ -165,7 +166,8 @@ class Game{
         if(this.spawnTimer <= 3000){
             this.spawnTimer = 3000;
         }else if(this.player.destroyCount % 5 === 0 && this.player.destroyCount !== 0){
-            this.spawnTimer -= 1000;           
+            this.spawnTimer -= 1000;
+            this.speed += 0.5;           
         }
     }
 
