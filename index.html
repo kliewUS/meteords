@@ -6,7 +6,31 @@
   <link rel="stylesheet" href="css/reset.css" type="text/css">
   <link rel="stylesheet" href="css/index.css" type="text/css">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon/favicon-32x32.png">
-      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7QJ87CL6PQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-7QJ87CL6PQ');
+  </script>
+	<script>
+    /**
+    * Function that registers a click on an outbound link in Analytics.
+    * This function takes a valid URL string as an argument, and uses that URL string
+    * as the event label. Setting the transport method to 'beacon' lets the hit be sent
+    * using 'navigator.sendBeacon' in browser that support it.
+    */
+    const getOutboundLink = function(url) {
+      gtag('event', 'click', {
+        'event_category': 'outbound',
+        'event_label': url,
+        'transport_type': 'beacon',
+        'event_callback': function(){document.location = url;}
+      });
+    }
+  </script>  
+  
 </head>
 <body id="game-page">
   <div class="main">
@@ -23,10 +47,10 @@
       <canvas id="canvas" height="700" width="600"></canvas> 
       <input id="type-form" />
       <ul class="link-list">
-        <li><a href="https://github.com/kliewUS/meteords">Github</a></li>
-        <li><a href="https://www.linkedin.com/in/khai-yuan-liew-397600143/">Linkedin</a></li>
-        <li><a href="https://angel.co/u/khai-yuan-liew">AngelList</a></li>
-        <li><a href="https://kliewus.github.io/portfolio/">Portfolio</a></li>
+        <li><a href="https://github.com/kliewUS/meteords" onclick="getOutboundLink('https://github.com/kliewUS');">Github</a></li>
+        <li><a href="https://www.linkedin.com/in/khai-yuan-liew-397600143/" onclick="getOutboundLink('https://www.linkedin.com/in/khai-yuan-liew-397600143/');">Linkedin</a></li>
+        <li><a href="https://angel.co/u/khai-yuan-liew" onclick="getOutboundLink('https://angel.co/u/khai-yuan-liew');">AngelList</a></li>
+        <li><a href="https://kliewus.github.io/portfolio/" onclick="getOutboundLink('https://kliewus.github.io/portfolio/');">Portfolio</a></li>
       </ul>
       <p class="footer">Meteords coded by Kelvin Liew</p> 
     </div>
