@@ -86,14 +86,14 @@ class Game{
         this.ctx.beginPath();
         this.ctx.fillStyle = '#ffffff';
         this.ctx.font = "16px Space Mono";        
-        this.ctx.fillText(`Best Score: ${this.hiScore}`, 85, 25);
-        this.ctx.fillText(`Best WPM: ${this.hiWPM}`, 525, 25);        
+        this.ctx.fillText(`Best Score: ${this.hiScore}`, 95, 25);
+        this.ctx.fillText(`Best WPM: ${this.hiWPM}`, 515, 25);        
         this.ctx.closePath();
     }
 
     renderGround(){
         this.ctx.beginPath();
-        this.ctx.rect(0, 600, this.canvas.width, 100);
+        this.ctx.rect(0, 500, this.canvas.width, 100);
         this.ctx.fillStyle = '#808080';
         this.ctx.fill();  
         this.ctx.strokeStyle = "#f5f5f5";      
@@ -103,11 +103,11 @@ class Game{
         this.ctx.beginPath();
         this.ctx.fillStyle = '#000000';
         this.ctx.font = "20px Space Mono";
-        this.ctx.fillText(`WPM: ${this.calculateWPM()}`, (this.canvas.width / 8), 675);
+        this.ctx.fillText(`WPM: ${this.calculateWPM()}`, (this.canvas.width / 8), 575);
         this.ctx.fill();
-        this.ctx.fillText(`Score: ${this.player.score}`, (this.canvas.width / 2) , 635);
+        this.ctx.fillText(`Score: ${this.player.score}`, (this.canvas.width / 2) , 535);
         this.ctx.fill();
-        this.ctx.fillText(`Lives: ${this.player.lives}`, ((this.canvas.width) * (7/8)), 675);
+        this.ctx.fillText(`Lives: ${this.player.lives}`, ((this.canvas.width) * (7/8)), 575);
         this.ctx.fill();                
         this.ctx.closePath();          
     }
@@ -124,7 +124,7 @@ class Game{
 
     positionCheck(){
         for(let i = 0; i < this.meteors.length; i++){
-            if(this.meteors[i].y >= 600){
+            if(this.meteors[i].y >= 500){
                 this.meteors.splice(i, 1);
                 this.player.lives -= 1;
             }
